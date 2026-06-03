@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, status, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from dotenv import load_dotenv
 import boto3
@@ -43,6 +44,13 @@ AWS_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME')
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Event & Media Management API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ==========================================
 # 🚪 AUTHENTICATION ROUTES
 # ==========================================
