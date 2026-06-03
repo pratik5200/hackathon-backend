@@ -1,0 +1,6 @@
+# Ignore the secret vault
+backend/.env
+
+# Ignore Python virtual environments
+backend/venv/
+__pycache__/
